@@ -8,20 +8,20 @@
   src: url('chrome-extension://__MSG_@@extension_id__/fonts/SourceSansPro-Regular.ttf');
 }
 
-.aianash-overlay {
+.aianash-box {
   font-family: 'Source Sans Pro';
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 10000;
   color: black;
   background-color: rgba(236, 240, 241,0.1);
-  border: 1px solid #000;
+  border: 1px solid #1abc9c;
 }
 
-.aianash-overlay h1, h2, h3, h4, h5, h6 {
+.aianash-box h1, h2, h3, h4, h5, h6 {
   text-shadow: 1px 1px 1px #fff;
   color: #000;
   font-weight: bold;
@@ -29,29 +29,29 @@
   margin: 0;
 }
 
-.aianash-overlay pre {
+.aianash-box pre {
   border-radius: 3px;
   overflow-x: scroll;
 }
 
-.aianash-overlay p {
+.aianash-box p {
   color: #000;
 }
 
-.aianash-overlay p a {
+.aianash-box p a {
   color: #990033;
   text-decoration: none;
   transition: all .25s;
   padding: 3px;
 }
 
-.aianash-overlay p a:hover {
+.aianash-box p a:hover {
   color: #fff;
   background: #990033;
   transition: all .25s;
 }
 
-.aianash-overlay .btn {
+.aianash-box .btn {
   background: #990033;
   padding: 12px 30px;
   border-radius: 3px;
@@ -61,14 +61,46 @@
   display: inline-block;
   width: 130px;
 }
-.aianash-overlay .btn:hover {
+.aianash-box .btn:hover {
   background: #cc0044;
 }
-.aianash-overlay .btn:active {
+.aianash-box .btn:active {
   top: 1px;
 }
-.aianash-overlay .btn:last-child {
+.aianash-box .btn:last-child {
   margin-right: 0;
+}
+
+@-webkit-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-16px);
+  }
+  60% {
+    -webkit-transform: translateY(-7px);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-16px);
+            transform: translateY(-16px);
+  }
+  60% {
+    -webkit-transform: translateY(-7px);
+            transform: translateY(-7px);
+  }
+}
+
+.bounce {
+  -webkit-animation-name: bounce;
+          animation-name: bounce;
 }
 
 #forkongithub a {
@@ -112,13 +144,14 @@
 }
 
 .taggle_list .taggle {
-  margin-right: 20px;
-  margin-top: 5px;
+  /*margin-right: 20px;*/
+  /*margin-top: 5px;*/
+  margin: 5px 10px 10px 0px;
 }
 
 .taggle_list .taggle span {
-  background: #0089e0;
-  padding: 4px 10px;
+  /*background: #0089e0;*/
+  background: #1abc9c;
   border-radius: 3px;
   position: relative;
   cursor: pointer;
@@ -129,9 +162,11 @@
   margin-right: 0px;
   font-size: 20px;
   font-weight: 600;
+  border-radius: 15px;
+  padding: 5px 30px 5px 15px;
 }
 
-.taggle_list .taggle span:before {
+/*.taggle_list .taggle span:before {
   content: '';
   float: left;
   position: absolute;
@@ -139,7 +174,7 @@
   left: -16px;
   width: 0;
   height: 0;
-  border-color: transparent #0089e0 transparent transparent;
+  border-color: transparent #1abc9c transparent transparent;
   border-style: solid;
   border-width: 17px 17px 17px 0;
 }
@@ -159,25 +194,25 @@
   -moz-box-shadow: -1px -1px 2px #004977;
   -webkit-box-shadow: -1px -1px 2px #004977;
   box-shadow: -1px -1px 2px #004977;
-}
+}*/
 
 .taggle_list .taggle_hot {
   background: #cac8c4;
 }
 
 .taggle_list .taggle .close {
-  font-size: 1.1rem;
   position: absolute;
   text-decoration: none;
-  padding-left: 2px;
-  padding-top: 3px;
+  /*padding-left: 2px;*/
+  /*padding-top: 3px;*/
   line-height: 0.5;
   color: #000;
   padding-bottom: 4px;
   border: 0;
   background: none;
   cursor: pointer;
-  margin: -8px 0px 0 -5px;
+  margin: 8px -25px;
+  /*margin: -8px 0px 0 -5px;*/
 }
 
 .taggle_placeholder {

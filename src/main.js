@@ -17,7 +17,8 @@ $(document).ready(() => {
 
       const cssFiles = [
         'taggle.css',
-        'overlay.css'
+        'overlay.css',
+        'font-awesome.css'
       ]
 
       eachTask([

@@ -1,7 +1,8 @@
 const NODE_PREFIX = 'aianash'
 
 const OVERLAY = {
-  CLASS            : 'aianash-overlay',
-  ID_PREFIX        : 'aianash-overlay-',
+  ID               : 'aianash-overlay',
+  BOX_CLASS        : 'aianash-box',
+  ID_PREFIX        : 'aianash-box-',
   BACKGROUND_COLOR : 'black'
 }

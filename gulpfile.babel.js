@@ -51,7 +51,7 @@ gulp.task('chrome', ['chrome:js'], () => {
     pipe('./icons/**/*', './tmp/chrome/icons/'),
     pipe(['./libs/*', './src/config/chrome/manifest.json', './src/template.html'], './tmp/chrome/'),
     pipe(['./tmp/*.js', './tmp/*.css'], './tmp/chrome/'),
-    pipe(['./tmp/*.ttf'], './tmp/chrome/fonts/')
+    pipe(['./tmp/*'], './tmp/chrome/fonts/')
   )
 })
 
