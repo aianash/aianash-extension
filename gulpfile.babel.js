@@ -23,7 +23,14 @@ gulp.task('dist', ['build'], (cb) => {
   $.runSequence('chrome:zip', 'chrome:crx', cb)
 })
 
-gulp.task('styles', () => {
+gulp.task('fonts', () => {
+  return pipe(
+    './fonts/*',
+    './tmp/'
+  )
+})
+
+gulp.task('styles', ['fonts'], () => {
   return pipe(
     './src/styles/*',
     $.autoprefixer({cascade: true}),
@@ -43,7 +50,8 @@ gulp.task('chrome', ['chrome:js'], () => {
   return merge(
     pipe('./icons/**/*', './tmp/chrome/icons/'),
     pipe(['./libs/*', './src/config/chrome/manifest.json', './src/template.html'], './tmp/chrome/'),
-    pipe(['./tmp/*'], './tmp/chrome/')
+    pipe(['./tmp/*.js', './tmp/*.css'], './tmp/chrome/'),
+    pipe(['./tmp/*.ttf'], './tmp/chrome/fonts/')
   )
 })
 
