@@ -23,19 +23,27 @@ gulp.task('dist', ['build'], (cb) => {
   $.runSequence('chrome:zip', 'chrome:crx', cb)
 })
 
-// Chrome
-gulp.task('chrome:template', () => {
-  return buildTemplate({CHROME: true})
+gulp.task('styles', () => {
+  return pipe(
+    './src/styles/*',
+    $.autoprefixer({cascade: true}),
+    './tmp/'
+  )
 })
 
-gulp.task('chrome:js', ['chrome:template'], () => {
-  return buildJs([], {CHROME: true})
+// Chrome
+gulp.task('chrome:js', ['styles'], () => {
+  return merge(
+    buildJs(['./src/util.js', './src/main.js'], 'main.js', {CHROME: true}),
+    buildJs(['./src/constants.js', './tmp/overlay.js', './src/aianash.js', './src/aiasectiontagger.js'], 'aianash.js', {CHROME: true})
+  )
 })
 
 gulp.task('chrome', ['chrome:js'], () => {
   return merge(
-    pipe('./icons/**/*', './tmp/chrome/icons'),
-    pipe(['./tmp/aianash.*', './src/config/chrome/manifest.json'], './tmp/chrome/')
+    pipe('./icons/**/*', './tmp/chrome/icons/'),
+    pipe(['./libs/*', './src/config/chrome/manifest.json', './src/template.html'], './tmp/chrome/'),
+    pipe(['./tmp/*'], './tmp/chrome/')
   )
 })
 
@@ -80,29 +88,24 @@ function html2js(template) {
   }
 }
 
-function buildJs(overrides, ctx) {
-  const src = [
-    './tmp/template.js'
-  ].concat(overrides)
-   .concat('./src/aianash.js')
-
+function buildJs(src, target, ctx) {
   return pipe(
     src,
     $.babel(),
-    $.concat('aianash.js'),
+    $.concat(target),
     $.preprocess({context: ctx}),
     './tmp'
   )
 }
 
-function buildTemplate(ctx) {
+function buildTemplate(src, varname, ctx) {
   const LOTS_OF_SPACES = new Array(500).join(' ')
 
   return pipe(
-    './src/template.html',
+    src,
     $.preprocess({context: ctx}),
     $.replace('__SPACES__', LOTS_OF_SPACES),
-    html2js('const TEMPLATE = \'$$\''),
+    html2js('const ' + varname + ' = \'$$\''),
     './tmp'
   )
 }
