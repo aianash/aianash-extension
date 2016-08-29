@@ -17,7 +17,7 @@ $(document).ready(() => {
 
       const cssFiles = [
         'aianash.css',
-        'font-awesome.css'
+        'fontello.css'
       ]
 
       eachTask([

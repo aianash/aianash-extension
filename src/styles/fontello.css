@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'fontello';
+  src: url('chrome-extension://__MSG_@@extension_id__/fonts/fontello.ttf?817700') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.fa {
+  font-family: 'fontello';
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: .2em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-times-circle:before {
+  content: '\e800';
+}
