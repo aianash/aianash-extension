@@ -1,0 +1,14 @@
+body {
+  width: 250px;
+  height: 300px;
+  background-color: #FFFFFF;
+  border-width: 1px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#aianash-title {
+  background-color: #D3D3D3;
+  text-align: center;
+  padding: 10px;
+}

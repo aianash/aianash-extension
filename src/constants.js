@@ -1,6 +1,7 @@
-const NODE_PREFIX = 'aianash'
+const NODE_PREFIX   = 'aianash'
 const AIANASH_CLASS = 'aianash'
-const API_URL = 'http://localhost:9000/page-tags/add'
+const TAGS_ADD_URL  = 'http://localhost:9000/page-tags/add'
+const TAGS_GET_URL  = 'http://localhost:9000/page-tags/get'
 
 const OVERLAY = {
   ID               : 'aianash-overlay',

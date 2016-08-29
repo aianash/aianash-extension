@@ -17,3 +17,32 @@ function eachItem(arr, iter, done) {
   })
   return eachTask(tasks, done)
 }
+
+function sendAjax(url, type, data, s, f, contentType) {
+  $.ajax({
+    url: url,
+    method: type,
+    data: data,
+    contentType: contentType || 'text/plain'
+  })
+  .done((resp, status, jqXHR) => {
+    if(s && typeof(s) == 'function') s(resp, status, jqXHR)
+  })
+  .fail((resp, status, jqXHR) => {
+    if(f && typeof(s) == 'function') f(resp, status, jqXHR)
+  })
+}
+
+function notifySuccess(msg) {
+  $.notify(msg, {
+    position  : 'top center',
+    className : 'success'
+  })
+}
+
+function notifyError(msg) {
+  $.notify(msg, {
+    position  : 'top center',
+    className : 'error'
+  })
+}

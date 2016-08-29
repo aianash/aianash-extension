@@ -11,11 +11,12 @@ $(document).ready(() => {
       const jsFiles = [
         'jquery.js',
         'taggle.js',
+        'notify.js',
         'aianash.js'
       ]
 
       const cssFiles = [
-        'taggle.css',
+        'aianash.css',
         'font-awesome.css'
       ]
 

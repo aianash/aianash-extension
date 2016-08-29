@@ -4,6 +4,8 @@ import path from 'path'
 import {merge} from 'event-stream'
 import map from 'map-stream'
 import {spawn} from 'child_process'
+import minify from 'gulp-minify'
+import cleanCss from 'gulp-clean-css'
 const $ = require('gulp-load-plugins')()
 
 // Tasks
@@ -26,24 +28,25 @@ gulp.task('dist', ['build'], (cb) => {
 gulp.task('fonts', () => {
   return pipe(
     './fonts/*',
-    './tmp/'
+    './tmp/fonts/'
   )
 })
 
-gulp.task('styles', ['fonts'], () => {
+gulp.task('styles', () => {
   return pipe(
     './src/styles/*',
     $.autoprefixer({cascade: true}),
+    cleanCss({compatibility: 'ie8'}),
     './tmp/'
   )
 })
 
 // Chrome
-gulp.task('chrome:js', ['styles'], () => {
+gulp.task('chrome:js', ['styles', 'fonts'], () => {
   return merge(
     buildJs(['./src/util.js', './src/main.js'], 'main.js', {CHROME: true}),
-    buildJs(['./src/constants.js', './tmp/overlay.js', './src/aianash.js', './src/aiasectiontagger.js'], 'aianash.js', {CHROME: true}),
-    buildJs(['./src/constants.js', './src/transport.js'], 'transport.js', {CHROME:true})
+    buildJs(['./src/constants.js', './src/util.js', './src/aiasectiontagger.js', './src/aianash.js'], 'aianash.js', {CHROME: true}),
+    buildJs(['./src/constants.js', './src/util.js', './src/transport.js'], 'transport.js', {CHROME:true})
   )
 })
 
@@ -51,8 +54,7 @@ gulp.task('chrome', ['chrome:js'], () => {
   return merge(
     pipe('./icons/**/*', './tmp/chrome/icons/'),
     pipe(['./libs/*', './src/config/chrome/manifest.json', './src/template.html'], './tmp/chrome/'),
-    pipe(['./tmp/*.js', './tmp/*.css'], './tmp/chrome/'),
-    pipe(['./tmp/*'], './tmp/chrome/fonts/')
+    pipe(['./tmp/**/'], './tmp/chrome/')
   )
 })
 
@@ -103,6 +105,12 @@ function buildJs(src, target, ctx) {
     $.babel(),
     $.concat(target),
     $.preprocess({context: ctx}),
+    minify({
+      ext: {
+        min: '.js',
+      },
+      noSource: true
+    }),
     './tmp'
   )
 }

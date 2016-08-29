@@ -1,9 +1,7 @@
 (($) => {
   $(document).ready(() => {
-
     var data = collectTagInfo()
-    console.log(data)
-    sendAjax(API_URL, 'POST', JSON.stringify(data))
+    sendAjax(TAGS_ADD_URL, 'POST', JSON.stringify(data), onSuccess, onFailure, 'application/json')
 
     function collectTagInfo() {
       return $('.' + OVERLAY.BOX_CLASS).map((index, elem) => {
@@ -18,25 +16,16 @@
       }).toArray()
     }
 
-    function sendAjax(url, type, data, s, f) {
-      console.log(data)
-      $.ajax({
-        url: url,
-        method: type,
-        data: data,
-        contentType: 'application/json',
-        dataType: 'json'
-      })
-      .done((resp) => {
-        console.log(resp)
-      })
-      .fail((resp) => {
-        console.log(resp)
-      })
-      .always((resp) => {
-        console.log('complete')
-      })
+    function onSuccess(resp, status, jqXHR) {
+      if(jqXHR.status == 200) {
+        notifySuccess(resp)
+      } else {
+        notifyError('Could not add tags due to some error !')
+      }
     }
 
+    function onFailure() {
+      notifyError('Could not add tags due to some error !')
+    }
   })
 })(jQuery)
