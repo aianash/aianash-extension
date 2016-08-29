@@ -14,12 +14,14 @@ $(document).ready(() => {
     var pageid = 3223
     var onSuccess = (resp, status, jqXHR) => {
       if(jqXHR.status != 200) {
+        window.aianashinjected = false  // so that plugin can be initialized again
         notifyError('Could not initialize plugin on this page due to some error !')
       } else {
         initializeTagger(resp)
       }
     }
     var onFailure = () => {
+      window.aianashinjected = false  // so that plugin can be initialized again
       notifyError('Could not initialize plugin on this page due to some error !')
     }
     sendAjax(TAGS_GET_URL, 'GET', 'tokenId=' + tokenid + '&pageId=' + pageid, onSuccess, onFailure)

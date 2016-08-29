@@ -2,7 +2,7 @@ $(document).ready(() => {
   // inject script that highlights the sections with class aianash
   $('#aianash-show').click(() => {
     chrome.tabs.executeScript(null, {
-      code  : 'var viewinjected = window.aianashViewInjected; window.aianashViewInjected = true; viewinjected;',
+      code  : 'var injected = window.aianashinjected; window.aianashinjected = true; injected;',
       runAt : 'document_start'
     }, (res) => {
       if(chrome.runtime.lastError || res[0])
