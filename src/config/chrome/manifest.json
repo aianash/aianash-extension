@@ -11,9 +11,7 @@
     "default_popup": "template.html"
   },
   "permissions": [
-    "activeTab",
-    "http://*/*",
-    "https://*/*"
+    "activeTab"
   ],
   "web_accessible_resources": [
     "fonts/*"

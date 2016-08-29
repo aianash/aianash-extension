@@ -1,10 +1,9 @@
 $(document).ready(() => {
-
   // inject script that highlights the sections with class aianash
   $('#aianash-show').click(() => {
     chrome.tabs.executeScript(null, {
-      code: 'var injected = window.aianashInjected; window.aianashInjected = true; injected;',
-      runAt: 'document_start'
+      code  : 'var viewinjected = window.aianashViewInjected; window.aianashViewInjected = true; viewinjected;',
+      runAt : 'document_start'
     }, (res) => {
       if(chrome.runtime.lastError || res[0])
         return
@@ -17,7 +16,6 @@ $(document).ready(() => {
 
       const cssFiles = [
         'taggle.css',
-        'overlay.css',
         'font-awesome.css'
       ]
 
@@ -28,4 +26,14 @@ $(document).ready(() => {
     })
   })
 
+  // inject script that transports the tag information to backend
+  $('#aianash-send').click(() => {
+    const jsFiles = [
+      'transport.js'
+    ]
+
+    eachTask([
+      (cb) => eachItem(jsFiles, inject(null, 'executeScript'), cb)
+    ])
+  })
 })

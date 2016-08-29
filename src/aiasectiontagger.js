@@ -29,10 +29,10 @@ class AIASectionTagger {
 
   addBox(index, elem) {
     var el = $(elem)
-    // $('<i>',{class: 'fa fa-times-circle', id: 'test-' + index}).appendTo(elem)
     return $('<div>', {
-              class: OVERLAY.BOX_CLASS + ' clearfix',
-              id: OVERLAY.ID_PREFIX + index
+              class : OVERLAY.BOX_CLASS + ' clearfix',
+              id    : OVERLAY.ID_PREFIX + index,
+              idx   : index
             }).appendTo(elem)
   }
 
