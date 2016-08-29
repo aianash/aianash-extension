@@ -30,16 +30,16 @@ class AIASectionTagger {
             }).appendTo(elem)
   }
 
-  sortData(data) {
-    data.sort((a, b) => {
-      if(a.sid < b.sid) return -1
-      else if(a.sid > b.sid) return 1
-      else return 0
+  mapBySectionId(data) {
+    var res = {}
+    $.each(data, (i, o) => {
+      res[o.section_id] = o
     })
+    return res
   }
 
   init(data) {
-    this.sortData(data)
+    var data = this.mapBySectionId(data)
 
     $.each(this.elems, (index, elem) => {
       // return if overlay is already added for this element
@@ -50,6 +50,7 @@ class AIASectionTagger {
       var datai = data[index] || []
       new Taggle(OVERLAY.ID_PREFIX + index, {
         tags: datai.tags || [],
+        placeholder: 'Enter tags here',
         tagFormatter: (elem) => {
           var el = $(elem)
           el.find('button').html('').addClass('fa fa-times-circle')

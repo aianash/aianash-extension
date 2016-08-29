@@ -4,14 +4,14 @@ $(document).ready(() => {
   if(!elems.length) return
 
   // create tagger object for returned elements
-  var tagger = new AIASectionTagger(elems)
-  initializeTags((data) => {
-    tagger.init(data)
+  chrome.storage.local.get(['token_id', 'page_url'], (storage) => {
+    var tagger = new AIASectionTagger(elems)
+    initializeTags(storage.token_id, storage.page_url, (data) => {
+      tagger.init(data)
+    })
   })
 
-  function initializeTags(initializeTagger) {
-    var tokenid = 338283
-    var pageid = 3223
+  function initializeTags(token_id, page_url, initializeTagger) {
     var onSuccess = (resp, status, jqXHR) => {
       if(jqXHR.status != 200) {
         window.aianashinjected = false  // so that plugin can be initialized again
@@ -24,6 +24,6 @@ $(document).ready(() => {
       window.aianashinjected = false  // so that plugin can be initialized again
       notifyError('Could not initialize plugin on this page due to some error !')
     }
-    sendAjax(TAGS_GET_URL, 'GET', 'tokenId=' + tokenid + '&pageId=' + pageid, onSuccess, onFailure)
+    sendAjax(TAGS_GET_URL, 'GET', 'tokenId=' + token_id + '&url=' + encodeURIComponent(page_url), onSuccess, onFailure)
   }
 })

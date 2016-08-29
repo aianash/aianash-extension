@@ -44,7 +44,7 @@ gulp.task('styles', () => {
 // Chrome
 gulp.task('chrome:js', ['styles', 'fonts'], () => {
   return merge(
-    buildJs(['./src/util.js', './src/main.js'], 'main.js', {CHROME: true}),
+    buildJs(['./src/constants.js', './src/util.js', './src/main.js'], 'main.js', {CHROME: true}),
     buildJs(['./src/constants.js', './src/util.js', './src/aiasectiontagger.js', './src/aianash.js'], 'aianash.js', {CHROME: true}),
     buildJs(['./src/constants.js', './src/util.js', './src/transport.js'], 'transport.js', {CHROME:true})
   )
