@@ -33,11 +33,8 @@ body {
 }
 
 #aianash-title {
-  background: #1abc9c;
-  color: white;
-  font-weight: bolder;
+  background: #27292C;
   padding: 10px;
-  font-size: 1.3em;
   margin: 5px;
   text-align: center;
 }
@@ -47,8 +44,8 @@ body {
 }
 
 #aianash-main button {
-  border: 1px solid #1abc9c;
-  color: #1abc9c;
+  border: 1px solid #3498db;
+  color: #3498db;
   margin: 5px;
   padding: 5px;
   background: none;
@@ -59,5 +56,5 @@ body {
 #aianash-main button:hover {
   cursor: pointer;
   color: white;
-  background: #1abc9c;
+  background: #3498db;
 }

@@ -11,9 +11,9 @@
   left: 0;
   right: 0;
   z-index: 10000;
-  color: #1abc9c;
+  color: #3498db;
   background-color: rgba(236, 240, 241,0.1);
-  border: 1px solid #1abc9c;
+  border: 1px solid #3498db;
 }
 
 .aianash-box h1, h2, h3, h4, h5, h6 {
@@ -143,7 +143,7 @@
 }
 
 .taggle_list .taggle span {
-  background: #1abc9c;
+  background: #3498db;
   border-radius: 3px;
   position: relative;
   cursor: pointer;
@@ -177,7 +177,7 @@
 .taggle_placeholder {
   position: relative;
   float: left;
-  color: #1abc9c;
+  color: #3498db;
   margin-top: 12px;
   margin-left: 12px;
   transition: opacity, .25s;
