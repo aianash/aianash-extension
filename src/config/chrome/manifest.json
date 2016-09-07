@@ -1,0 +1,20 @@
+{
+  "name": "AIANash",
+  "version": "0.1.0",
+  "manifest_version": 2,
+  "description": "Extension to tag the webpages",
+  "homepage_url": "http://aianash.com",
+  "icons": {
+    "128": "icons/icon.png"
+  },
+  "browser_action": {
+    "default_popup": "template.html"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "web_accessible_resources": [
+    "fonts/*"
+  ]
+}
